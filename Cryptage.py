@@ -1,14 +1,15 @@
 import string
 
-def crypt(message):
-    caracteres = string.ascii_letters + string.digits + string.punctuation + " "
+def crypt(message, pas):
+    caracteres = string.ascii_letters + string.punctuation + string.digits + " "
     resultat = ""
 
-    for char in message:
-        if char in caracteres:
-            index = caracteres.index(char)
-            resultat += caracteres[(index + 1) % len(caracteres)]
+    for lettre in message:
+        if lettre in caracteres:
+            index = caracteres.index(lettre)
+            nouvel_index = (index + pas) % len(caracteres)
+            resultat += caracteres[nouvel_index]
         else:
-            resultat += char
+            resultat += lettre
 
-    return resultat
+    return resultat + str(pas)
